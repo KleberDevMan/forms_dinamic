@@ -1,0 +1,67 @@
+<%= form_with(model: service, local: true) do |form| %>
+
+  <!--  se ocorrer algum erro-->
+  <% if service.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(service.errors.count, "error") %> prohibited this service from being saved:</h2>
+
+      <ul>
+        <% service.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sub_title %>
+    <%= form.text_field :sub_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :which_is %>
+    <%= form.text_area :which_is %>
+  </div>
+
+  <div class="field">
+    <%= form.label :who_can_use %>
+    <%= form.text_area :who_can_use %>
+  </div>
+
+  <div class="field">
+    <%= form.label :more_info %>
+    <%= form.text_area :more_info %>
+  </div>
+
+  <h4>Etapas</h4>
+  <!-- COMENTÁRIO:
+    O cocoon exige que seu nested_form esteja dentro de uma div com id "nome_do_seu_nested_no_plural"
+  -->
+  <div id="stages">
+    <%= form.fields_for :stages do |stage| %>
+      <!-- COMENTÁRIO:
+        é uma exigencia também que os campos do seu nested esteja numa partial "nome_do_seu_nested_no_singular_fields"
+      -->
+      <%= render 'stage_fields', f: stage %>
+    <% end %>
+
+    <!-- COMENTÁRIO:
+      O link para adicionar dinamicamente os fields deve estar dentro de uma div .links
+    -->
+    <div class="links">
+      <!-- COMENTÁRIO: O link_to_add_association é um helper provido pela gem -->
+      <%= link_to_add_association 'add stage', form, :stages %>
+      <br><br>
+    </div>
+  </div>
+
+  <!--  submit-->
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

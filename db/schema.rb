@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_15_183659) do
+ActiveRecord::Schema.define(version: 2019_01_16_184110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,25 @@ ActiveRecord::Schema.define(version: 2019_01_15_183659) do
     t.index ["user_id"], name: "index_experiences_on_user_id"
   end
 
+  create_table "services", force: :cascade do |t|
+    t.string "title"
+    t.string "sub_title"
+    t.text "which_is"
+    t.text "who_can_use"
+    t.text "more_info"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "stages", force: :cascade do |t|
+    t.string "desc"
+    t.string "duration"
+    t.bigint "service_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["service_id"], name: "index_stages_on_service_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -32,4 +51,5 @@ ActiveRecord::Schema.define(version: 2019_01_15_183659) do
   end
 
   add_foreign_key "experiences", "users"
+  add_foreign_key "stages", "services"
 end
