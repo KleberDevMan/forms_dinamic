@@ -1,0 +1,41 @@
+<h3 class="peso">Portal de Serviços Digitais To</h3>
+<br>
+<div class="cyan lighten-3" style="padding: 10px">
+  <ul>
+    <span><a href="<%= welcome_index_path %>">Home</a></span>
+    <!--    <span style="margin-right: 20px;float: right"><a href="#" >Todos Serviços</a></span>-->
+    <span style="margin-right: 6px; float: right"><a href="<%= new_service_path %>">Cadastrar serviço</a></span>
+  </ul>
+</div>
+<br><br>
+
+<div class="row">
+  <% @services.each do |service| %>
+    <div class="col s12 m4 l4">
+      <div class="card blue lighten-5">
+        <div class="card-content">
+          <a href="<%= service_path(service) %>"><span class="card-title"><%= service.title %></span></a>
+          <%= render :inline => service.which_is %>
+        </div>
+        <div class="card-action">
+          <%= link_to 'Edit', edit_service_path(service) %>
+          <%= link_to 'Destroy', service, method: :delete, data: {confirm: 'Are you sure?'} %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+    // mouse_over()
+    $('.card').mouseover(function () {
+        $(this).removeClass("lighten-5");
+        // mouse_leave()
+    }).mouseleave(function () {
+        $(this).addClass("lighten-5");
+    });
+
+
+
+</script>

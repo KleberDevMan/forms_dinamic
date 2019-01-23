@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JQuery</title>
+    <!--jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+
+        // Assim que o DOM e carregado
+        $(document).ready(function () {
+            alert('DOM Carregado')
+        })
+        // ou
+        $(function () {
+
+        })
+
+        // Assim que todos os elementos sao carregados
+        $(window).load(function () {
+            alert('Elementos carregados')
+        })
+    </script>
+
+</head>
+<body>
+<div>curso de jquery</div>
+</body>
+</html>

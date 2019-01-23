@@ -13,19 +13,28 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+
+
+  <div class="row">
+    <div class="col s12 m6 l6">
+      <div class="input-field">
+        <%= form.label :title %>
+        <%= form.text_field :title %>
+      </div>
+    </div>
+    <div class="col s12 m6 l6">
+      <div class="field">
+        <%= form.label :sub_title %>
+        <%= form.text_field :sub_title %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :sub_title %>
-    <%= form.text_field :sub_title %>
-  </div>
 
   <div class="field">
     <%= form.label :which_is %>
-    <%= form.text_area :which_is %>
+    <%= form.text_area :which_is, :class => "tinymce", :rows => 5, :cols => 120 %>
+    <%= tinymce %>
   </div>
 
   <div class="field">
@@ -38,30 +47,39 @@
     <%= form.text_area :more_info %>
   </div>
 
-  <h4>Etapas</h4>
+
+
+  <!--  <h4>Etapas</h4>-->
   <!-- COMENTÁRIO:
     O cocoon exige que seu nested_form esteja dentro de uma div com id "nome_do_seu_nested_no_plural"
   -->
-  <div id="stages">
-    <%= form.fields_for :stages do |stage| %>
-      <!-- COMENTÁRIO:
-        é uma exigencia também que os campos do seu nested esteja numa partial "nome_do_seu_nested_no_singular_fields"
-      -->
-      <%= render 'stage_fields', f: stage %>
-    <% end %>
+  <!--  <div id="stages">-->
+  <%#= form.fields_for :stages do |stage| %>
+  <!-- COMENTÁRIO:
+    é uma exigencia também que os campos do seu nested esteja numa partial "nome_do_seu_nested_no_singular_fields"
+  -->
+  <%#= render 'stage_fields', f: stage %>
+  <%# end %>
 
-    <!-- COMENTÁRIO:
-      O link para adicionar dinamicamente os fields deve estar dentro de uma div .links
-    -->
-    <div class="links">
-      <!-- COMENTÁRIO: O link_to_add_association é um helper provido pela gem -->
-      <%= link_to_add_association 'add stage', form, :stages %>
-      <br><br>
-    </div>
-  </div>
+  <!-- COMENTÁRIO:
+    O link para adicionar dinamicamente os fields deve estar dentro de uma div .links
+  -->
+  <!--    <div class="links">-->
+  <!-- COMENTÁRIO: O link_to_add_association é um helper provido pela gem -->
+  <%#= link_to_add_association 'add stage', form, :stages %>
+  <!--      <br><br>-->
+  <!--    </div>-->
+  <!--  </div>-->
 
   <!--  submit-->
   <div class="actions">
     <%= form.submit %>
   </div>
+
+  <script type="text/javascript" charset="utf-8">
+      $(document).ready(function() {
+          $('input#input_text, textarea#textarea2').characterCounter();
+      });
+  </script>
+
 <% end %>

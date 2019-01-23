@@ -12,7 +12,7 @@
 
 <p>
   <strong>Which is:</strong>
-  <%= @service.which_is %>
+  <%= render :inline => @service.which_is %>
 </p>
 
 <p>
@@ -26,4 +26,4 @@
 </p>
 
 <%= link_to 'Edit', edit_service_path(@service) %> |
-<%= link_to 'Back', services_path %>
+<%= link_to 'Back', welcome_index_path %>
